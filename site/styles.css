@@ -768,6 +768,18 @@ section.dark .lede { color: rgba(250,246,240,0.78); }
 .photo-arch.has-image .label,
 .photo-arch.has-image::before { display: none; }
 
+/* Brand-color frame around real photos — Sanctuary Plum, arch-shaped
+   (the border inherits the container's arch border-radius). The
+   thickness keeps the photo from going edge-to-edge so it reads as a
+   framed portrait, not a clipped fill. */
+.photo-arch.has-image {
+  border: 8px solid var(--plum-600);
+  background: var(--plum-600);
+}
+.photo-arch.has-image.landscape {
+  border-width: 6px;
+}
+
 .photo-rect {
   background: var(--plum-100);
   border: 1px solid var(--border-soft);
