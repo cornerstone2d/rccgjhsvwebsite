@@ -729,7 +729,9 @@ section.dark .lede { color: rgba(250,246,240,0.78); }
   width: 100%;
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  /* Soft drop-shadow so the arched portrait reads as a real frame
+     resting on parchment, not a flat decal. */
+  box-shadow: var(--shadow-md);
 }
 .photo-arch::before {
   content: '';
