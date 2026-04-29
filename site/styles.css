@@ -458,6 +458,154 @@ section.dark .lede { color: rgba(250,246,240,0.78); }
 .hero.dark .hero-arch { opacity: 0.18; }
 .hero.dark .hero-arch-2 { opacity: 0.28; }
 
+/* ----------------------- Hero v2 (Living Sanctuary) -----------------------
+   Centered editorial typography over a slowly-drifting plum + coral aurora,
+   with a large breathing arch silhouette anchoring the bottom. Animations
+   are continuous CSS keyframes — no JS — and disabled under
+   prefers-reduced-motion. */
+.hero.hero-v2 {
+  min-height: 92vh;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--parchment);
+}
+.hero.hero-v2 .hero-arch,
+.hero.hero-v2 .hero-arch-2 { display: none; } /* legacy decoration off in v2 */
+
+.hero-v2 .aurora {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-v2 .aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform, opacity;
+}
+.hero-v2 .aurora-blob--plum {
+  width: 70vw; height: 70vw; max-width: 1100px; max-height: 1100px;
+  background: radial-gradient(circle, rgba(180, 138, 169, 0.55), transparent 65%);
+  top: -25%; left: -18%;
+  animation: hero-drift-1 28s ease-in-out infinite alternate;
+}
+.hero-v2 .aurora-blob--coral {
+  width: 55vw; height: 55vw; max-width: 900px; max-height: 900px;
+  background: radial-gradient(circle, rgba(241, 166, 142, 0.45), transparent 65%);
+  bottom: -22%; right: -10%;
+  animation: hero-drift-2 34s ease-in-out infinite alternate;
+}
+.hero-v2 .aurora-blob--soft {
+  width: 40vw; height: 40vw; max-width: 700px; max-height: 700px;
+  background: radial-gradient(circle, rgba(239, 227, 236, 0.7), transparent 65%);
+  top: 15%; right: 5%;
+  animation: hero-drift-3 22s ease-in-out infinite alternate;
+}
+
+/* Breathing arch silhouette anchoring the bottom — the brand motif as
+   atmosphere, not as a hard frame. */
+.hero-v2 .hero-archlight {
+  position: absolute;
+  bottom: -12%;
+  left: 50%;
+  width: clamp(420px, 65vh, 880px);
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(180deg,
+    rgba(74, 25, 66, 0.10) 0%,
+    rgba(74, 25, 66, 0.04) 60%,
+    transparent 100%);
+  border: 1px solid rgba(74, 25, 66, 0.12);
+  border-bottom: none;
+  border-radius: var(--arch-full);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 1;
+  animation: hero-breathe 9s ease-in-out infinite;
+}
+
+.hero-v2 .hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 940px;
+  padding: 80px 32px;
+}
+.hero-v2 .hero-content h1.display {
+  margin: 16px auto 20px;
+  max-width: 14ch;
+}
+.hero-v2 .hero-content .lede {
+  margin: 0 auto 32px;
+  max-width: 56ch;
+}
+.hero-v2 .hero-content .btn-row { margin-bottom: 28px; }
+.hero-v2 .hero-content .meta {
+  color: var(--text-muted);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Thin pulsing scroll cue */
+.hero-v2 .scroll-cue {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 56px;
+  background: rgba(74, 25, 66, 0.20);
+  z-index: 2;
+  overflow: hidden;
+}
+.hero-v2 .scroll-cue span {
+  position: absolute;
+  top: 0; left: 0;
+  width: 1px; height: 28px;
+  background: var(--plum-700);
+  animation: hero-scroll-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes hero-drift-1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(14vw, 10vh) scale(1.18); }
+}
+@keyframes hero-drift-2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-12vw, -8vh) scale(1.12); }
+}
+@keyframes hero-drift-3 {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(-10vw, 6vh) scale(0.85); opacity: 0.55; }
+}
+@keyframes hero-breathe {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.85; }
+  50%      { transform: translateX(-50%) scale(1.04); opacity: 1; }
+}
+@keyframes hero-scroll-pulse {
+  0%   { transform: translateY(-28px); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(56px); opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  .hero.hero-v2 { min-height: 85vh; }
+  .hero-v2 .hero-content { padding: 56px 20px; }
+  .hero-v2 .scroll-cue { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-v2 .aurora-blob,
+  .hero-v2 .hero-archlight,
+  .hero-v2 .scroll-cue span { animation: none !important; }
+}
+
 /* ----------------------- Cards ----------------------- */
 .card {
   background: var(--bg-card);
@@ -545,6 +693,48 @@ section.dark .lede { color: rgba(250,246,240,0.78); }
   margin-bottom: 14px;
   position: relative; z-index: 2;
 }
+
+/* Strategic icon for spot-cards (used on Giving "Other ways"). Plum
+   tinted, sits above the title. Sized to feel intentional, not loud. */
+.spot-card .card-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--plum-100);
+  color: var(--plum-700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  position: relative; z-index: 2;
+  transition: background 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+.spot-card .card-icon svg { width: 22px; height: 22px; display: block; }
+.spot-card:hover .card-icon { background: var(--plum-600); color: var(--text-inverse); }
+
+/* Contact "Reach us" list — small leading icons aligned with each row. */
+.contact-list {
+  list-style: none;
+  display: flex; flex-direction: column;
+  gap: 14px;
+  margin: 0; padding: 0;
+}
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15.5px;
+}
+.contact-icon {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border-radius: 999px;
+  background: var(--plum-100);
+  color: var(--plum-700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-icon svg { width: 14px; height: 14px; display: block; }
 .spot-card .num {
   font-family: var(--display);
   font-size: 36px;
