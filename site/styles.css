@@ -474,12 +474,30 @@ section.dark .lede { color: rgba(250,246,240,0.78); }
   position: relative;
   overflow: hidden;
   background: var(--plum-900);  /* fallback if photo + gradient layers fail */
-  /* Angular bottom edge — right side ends 72px above the bottom, slope
-     down to bottom-left. Subtle, modern, suggests forward motion. */
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 72px), 0 100%);
 }
 .hero.hero-v2 .hero-arch,
 .hero.hero-v2 .hero-arch-2 { display: none; } /* legacy decoration off in v2 */
+
+/* Logo-cradle arc at the bottom of the hero. The pseudo-element is a
+   wide, shallow dome filled with the NEXT section's parchment-2
+   background, so it reads as the next section "rising up" through the
+   hero's bottom — an arc that goes up and back down, matching the
+   orange cradle curve in the JHSV logo. */
+.hero.hero-v2::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 96px;
+  background: var(--bg-alt);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  z-index: 5;
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .hero.hero-v2::after { height: 64px; }
+}
 
 /* Photo background. Layered: dark plum gradient overlay on top of the
    photo so text stays legible regardless of what's in the image. If the
@@ -616,10 +634,11 @@ section.dark .lede { color: rgba(250,246,240,0.78); }
 }
 
 /* Functional scroll-down cue. Anchor link with a thin vertical track
-   and a pulsing dash that drifts down. Hovers brighter, scales up. */
+   and a pulsing dash that drifts down. Hovers brighter, scales up.
+   Sits clear of the bottom dome arc. */
 .hero-v2 .scroll-cue {
   position: absolute;
-  bottom: 96px; /* sit above the angled clip */
+  bottom: 144px; /* clear of the 96px dome arc */
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;
