@@ -170,17 +170,6 @@
       window.addEventListener('load', setTopbarHeight);
     }
 
-    // ---- Hero photo slideshow (Home page) ----
-    var slides = document.querySelectorAll('.hero-photo .slide');
-    if (slides.length > 1 && !reduceMotion) {
-      var current = 0;
-      setInterval(function () {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-      }, 6000);
-    }
-
     // ---- Transparent topbar over the home hero ----
     var topbar = document.querySelector('.topbar');
     var heroV2 = document.querySelector('.hero.hero-v2');

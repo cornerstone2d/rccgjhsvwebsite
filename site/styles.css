@@ -548,36 +548,23 @@ body[data-page="home"] section.alt#welcome {
   }
 }
 
-/* Photo slideshow background. Each .slide is a layer with its own
-   background-image; JS toggles .active to crossfade between them.
-   A single ::after pseudo-element draws the dark plum overlay on top
-   of all slides so text stays legible regardless of what's in any
-   given image. If photo files are missing, slides render empty and
-   the parent's deep-plum fallback shows through. */
+/* Single static photo background. Layered: dark plum gradient overlay
+   on top of the photo so text stays legible regardless of image
+   content. If the photo file is missing, the gradient still renders —
+   graceful fallback to deep plum. */
 .hero-v2 .hero-photo {
   position: absolute; inset: 0;
   z-index: 0;
-}
-.hero-v2 .hero-photo::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg,
-    rgba(31, 3, 44, 0.62) 0%,
-    rgba(74, 25, 66, 0.55) 45%,
-    rgba(42, 14, 39, 0.78) 100%);
-  z-index: 2;
-  pointer-events: none;
-}
-.hero-v2 .hero-photo .slide {
-  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(180deg,
+      rgba(31, 3, 44, 0.62) 0%,
+      rgba(74, 25, 66, 0.55) 45%,
+      rgba(42, 14, 39, 0.78) 100%),
+    url('assets/photos/hero_background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 1.6s ease-in-out;
-  z-index: 1;
 }
-.hero-v2 .hero-photo .slide.active { opacity: 1; }
 
 .hero-v2 .aurora {
   position: absolute; inset: 0;

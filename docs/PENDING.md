@@ -2,15 +2,11 @@
 
 Things parked for later so we can keep moving on bigger pieces.
 
-## Hero photo slideshow (Home page)
+## Hero background photo (Home page)
 
-The home hero now runs a 3-image crossfade slideshow. Drop the files at:
+The home hero uses a single static background image. Drop the file at:
 
-  `site/assets/photos/hero_1.jpg`
-  `site/assets/photos/hero_2.jpg`
-  `site/assets/photos/hero_3.jpg`
-
-Each is shown for ~6 seconds, with a 1.6-second crossfade. The order is determined by the file name (1, 2, 3). The slideshow is disabled automatically under `prefers-reduced-motion` (for accessibility).
+  `site/assets/photos/hero_background.jpg`
 
 **File specs:**
 
@@ -19,9 +15,7 @@ Each is shown for ~6 seconds, with a 1.6-second crossfade. The order is determin
 - **Crop:** wide, with breathing room around the subject — the dark plum overlay we apply (62-78% opacity) sits on top, and centered text overlays everything
 - **Subject ideas:** Sunday-morning candid of the congregation, sanctuary interior with worship lighting, baptism, fellowship moment
 
-**To add more or fewer slides:** add or remove `<div class="slide" style="background-image: url('...')"></div>` lines inside `.hero-photo` in `site/index.html`. The JS in `scripts.js` cycles through all of them automatically — no other code changes needed.
-
-**Fallback:** if any (or all) of the JPGs are missing, the slide is empty and the deep-plum gradient backdrop shows through. The hero never breaks.
+**Fallback:** if the file is missing, the deep-plum gradient backdrop renders alone — the hero never breaks.
 
 ## Logo
 
