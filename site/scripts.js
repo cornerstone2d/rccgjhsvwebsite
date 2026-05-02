@@ -156,5 +156,38 @@
         }
       });
     });
+
+    // ---- Hero photo slideshow (Home page) ----
+    var slides = document.querySelectorAll('.hero-photo .slide');
+    if (slides.length > 1 && !reduceMotion) {
+      var current = 0;
+      setInterval(function () {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 6000);
+    }
+
+    // ---- Transparent topbar over the home hero ----
+    var topbar = document.querySelector('.topbar');
+    var heroV2 = document.querySelector('.hero.hero-v2');
+    if (topbar && heroV2 && document.body.dataset.page === 'home') {
+      var updateTopbar = function () {
+        if (window.innerWidth <= 920) {
+          topbar.classList.remove('over-hero');
+          return;
+        }
+        var heroBottom = heroV2.offsetTop + heroV2.offsetHeight;
+        var threshold = heroBottom - topbar.offsetHeight - 40;
+        if (window.scrollY < threshold) {
+          topbar.classList.add('over-hero');
+        } else {
+          topbar.classList.remove('over-hero');
+        }
+      };
+      updateTopbar();
+      window.addEventListener('scroll', updateTopbar, { passive: true });
+      window.addEventListener('resize', updateTopbar);
+    }
   }
 })();

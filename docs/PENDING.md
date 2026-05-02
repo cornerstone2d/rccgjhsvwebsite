@@ -2,20 +2,26 @@
 
 Things parked for later so we can keep moving on bigger pieces.
 
-## Hero photo (Home page)
+## Hero photo slideshow (Home page)
 
-The home page hero now expects a sanctuary / Sunday-service candid photo at:
+The home hero now runs a 3-image crossfade slideshow. Drop the files at:
 
-  `site/assets/photos/hero_sanctuary.jpg`
+  `site/assets/photos/hero_1.jpg`
+  `site/assets/photos/hero_2.jpg`
+  `site/assets/photos/hero_3.jpg`
 
-Until the file is uploaded, the hero falls back to a deep-plum gradient (graceful — no broken image, just less inviting). When you have the photo:
+Each is shown for ~6 seconds, with a 1.6-second crossfade. The order is determined by the file name (1, 2, 3). The slideshow is disabled automatically under `prefers-reduced-motion` (for accessibility).
+
+**File specs:**
 
 - **Format:** JPG, landscape orientation
-- **Resolution:** 2400&times;1600 minimum (we'll downsize on commit)
-- **Crop:** wide, lots of negative space at the top so the headline sits comfortably; main subject in the lower third
-- **Light:** warm tones (worship lighting, golden hour) photograph best — the dark plum overlay we apply will work with anything
+- **Resolution:** 2400&times;1600 minimum (we'll downsize on commit, same as the other portraits)
+- **Crop:** wide, with breathing room around the subject — the dark plum overlay we apply (62-78% opacity) sits on top, and centered text overlays everything
+- **Subject ideas:** Sunday-morning candid of the congregation, sanctuary interior with worship lighting, baptism, fellowship moment
 
-Drop it via GitHub UI or `git push`; it picks up automatically.
+**To add more or fewer slides:** add or remove `<div class="slide" style="background-image: url('...')"></div>` lines inside `.hero-photo` in `site/index.html`. The JS in `scripts.js` cycles through all of them automatically — no other code changes needed.
+
+**Fallback:** if any (or all) of the JPGs are missing, the slide is empty and the deep-plum gradient backdrop shows through. The hero never breaks.
 
 ## Logo
 

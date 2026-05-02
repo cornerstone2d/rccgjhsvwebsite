@@ -224,6 +224,44 @@ section.dark .lede { color: rgba(250,246,240,0.78); }
 .topbar nav a.btn-watch:hover,
 .topbar nav a.btn-watch:focus { color: #fff; }
 
+/* Transparent topbar overlaid on the home hero. JS toggles .over-hero
+   when the scroll position is still within the hero. Smooth crossfade
+   to the default parchment-translucent state once you scroll past it.
+   Desktop only — mobile keeps the always-solid bar for legibility on
+   the smaller hamburger menu. */
+.topbar {
+  transition:
+    background 0.45s var(--ease-out),
+    border-bottom-color 0.45s var(--ease-out),
+    backdrop-filter 0.45s var(--ease-out);
+}
+.topbar .brand,
+.topbar nav a:not(.btn-watch) {
+  transition: color 0.45s var(--ease-out);
+}
+@media (min-width: 921px) {
+  body[data-page="home"] .topbar.over-hero {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent;
+  }
+  body[data-page="home"] .topbar.over-hero .brand {
+    color: rgba(250, 246, 240, 0.95);
+  }
+  /* The wordmark accent (the inline-styled JHSV span) — flip to coral
+     so the brand reads correctly on dark photo backdrop. */
+  body[data-page="home"] .topbar.over-hero .brand span {
+    color: var(--coral-300) !important;
+  }
+  body[data-page="home"] .topbar.over-hero nav a:not(.btn-watch) {
+    color: rgba(250, 246, 240, 0.85);
+  }
+  body[data-page="home"] .topbar.over-hero nav a:not(.btn-watch):hover {
+    color: var(--text-inverse);
+  }
+}
+
 /* ----------------------- Buttons ----------------------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -489,39 +527,46 @@ section.dark .lede { color: rgba(250,246,240,0.78); }
   bottom: -1px;
   left: 0;
   width: 100%;
-  height: 96px;
+  height: 56px;
   background: var(--bg-alt);
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
   z-index: 5;
   pointer-events: none;
 }
 @media (max-width: 600px) {
-  .hero.hero-v2::after { height: 64px; }
+  .hero.hero-v2::after { height: 36px; }
 }
 
-/* Photo background. Layered: dark plum gradient overlay on top of the
-   photo so text stays legible regardless of what's in the image. If the
-   photo file is missing, the gradient still renders — graceful fallback. */
+/* Photo slideshow background. Each .slide is a layer with its own
+   background-image; JS toggles .active to crossfade between them.
+   A single ::after pseudo-element draws the dark plum overlay on top
+   of all slides so text stays legible regardless of what's in any
+   given image. If photo files are missing, slides render empty and
+   the parent's deep-plum fallback shows through. */
 .hero-v2 .hero-photo {
   position: absolute; inset: 0;
   z-index: 0;
-  background-image:
-    linear-gradient(180deg,
-      rgba(31, 3, 44, 0.62) 0%,
-      rgba(74, 25, 66, 0.55) 45%,
-      rgba(42, 14, 39, 0.78) 100%),
-    url('assets/photos/hero_sanctuary.jpg');
+}
+.hero-v2 .hero-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(31, 3, 44, 0.62) 0%,
+    rgba(74, 25, 66, 0.55) 45%,
+    rgba(42, 14, 39, 0.78) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-v2 .hero-photo .slide {
+  position: absolute; inset: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* Slow continuous zoom so the still photo feels alive */
-  animation: hero-kenburns 32s ease-in-out infinite alternate;
-  will-change: transform;
+  opacity: 0;
+  transition: opacity 1.6s ease-in-out;
+  z-index: 1;
 }
-@keyframes hero-kenburns {
-  0%   { transform: scale(1); }
-  100% { transform: scale(1.06); }
-}
+.hero-v2 .hero-photo .slide.active { opacity: 1; }
 
 .hero-v2 .aurora {
   position: absolute; inset: 0;
@@ -604,6 +649,26 @@ section.dark .lede { color: rgba(250,246,240,0.78); }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 500;
+}
+/* Address as a Google-Maps link with a small location-pin glyph. */
+.hero-v2 .hero-content .meta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: color 0.25s var(--ease-out);
+}
+.hero-v2 .hero-content .meta-link svg {
+  flex-shrink: 0;
+  opacity: 0.8;
+  transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+}
+.hero-v2 .hero-content .meta-link:hover {
+  color: var(--text-inverse);
+}
+.hero-v2 .hero-content .meta-link:hover svg {
+  opacity: 1;
+  transform: translateY(-1px);
 }
 
 /* Outline-on-photo button — like .btn-outline but inverted for the

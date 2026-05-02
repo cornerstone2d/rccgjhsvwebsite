@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=17" />
+<link rel="stylesheet" href="styles.css?v=18" />
 </head>
 <body data-page="home">
 
@@ -17,9 +17,13 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero hero-v2">
-  <!-- Sanctuary photo background. Falls back to the deep-plum gradient
-       if assets/photos/hero_sanctuary.jpg is missing. -->
-  <div class="hero-photo" aria-hidden="true"></div>
+  <!-- Sanctuary photo slideshow. Drop hero_1.jpg, hero_2.jpg, hero_3.jpg
+       into site/assets/photos/. Missing files fall back to dark plum. -->
+  <div class="hero-photo" aria-hidden="true">
+    <div class="slide active" style="background-image: url('assets/photos/hero_1.jpg');"></div>
+    <div class="slide" style="background-image: url('assets/photos/hero_2.jpg');"></div>
+    <div class="slide" style="background-image: url('assets/photos/hero_3.jpg');"></div>
+  </div>
 
   <!-- Drifting aurora layer -->
   <div class="aurora" aria-hidden="true">
@@ -39,7 +43,13 @@
       <a class="btn btn-primary" href="new.html" data-magnetic>Plan your visit <span class="arrow">&rarr;</span></a>
       <a class="btn btn-outline-on-photo" href="live.html">Watch this Sunday</a>
     </div>
-    <div class="meta reveal">474 Piercy Road &middot; San Jose, CA 95138</div>
+    <a class="meta meta-link reveal" href="https://maps.app.goo.gl/nTiaMmKCsiDoEQuT8" target="_blank" rel="noopener">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z"/>
+        <circle cx="12" cy="9" r="2.5"/>
+      </svg>
+      474 Piercy Road &middot; San Jose, CA 95138
+    </a>
   </div>
 
   <a class="scroll-cue" href="#welcome" aria-label="Scroll to next section">
@@ -202,6 +212,6 @@
 <!-- ============ FOOTER ============ -->
 <div data-include="partials/footer.html"></div>
 
-<script src="scripts.js?v=2"></script>
+<script src="scripts.js?v=3"></script>
 </body>
 </html>
