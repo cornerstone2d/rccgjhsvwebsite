@@ -157,6 +157,19 @@
       });
     });
 
+    // ---- Measure topbar height so the home hero can extend up under it ----
+    var topbarEl = document.querySelector('.topbar');
+    if (topbarEl) {
+      var setTopbarHeight = function () {
+        var h = topbarEl.offsetHeight;
+        if (h) document.documentElement.style.setProperty('--topbar-height', h + 'px');
+      };
+      setTopbarHeight();
+      window.addEventListener('resize', setTopbarHeight);
+      // Re-measure once images / fonts settle
+      window.addEventListener('load', setTopbarHeight);
+    }
+
     // ---- Hero photo slideshow (Home page) ----
     var slides = document.querySelectorAll('.hero-photo .slide');
     if (slides.length > 1 && !reduceMotion) {
