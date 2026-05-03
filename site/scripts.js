@@ -179,6 +179,151 @@
       });
     });
 
+    // ---- Ministries grid + morphing modal (About page) ----
+    var ministryOverlay = document.getElementById('ministryOverlay');
+    if (ministryOverlay) {
+      var ministries = {
+        ops: {
+          name: 'Church Operations & Administration',
+          blurb: 'Day-to-day coordination so every Sunday runs without a hitch.',
+          depts: [
+            { name: 'Service Coordination', lead: 'Bunmi O.' },
+            { name: 'Church Project & Building', lead: 'Dami B.' },
+            { name: 'Finance Department', lead: null },
+            { name: 'Digital Operations', lead: null }
+          ]
+        },
+        hospitality: {
+          name: 'Hospitality',
+          blurb: 'From the parking lot to the foyer, a welcome that lands.',
+          depts: [
+            { name: 'Guest Experience', lead: 'Titilope, Chinonso F. & Dayo O.' },
+            { name: 'Security & Safety', lead: 'Dayo O.' },
+            { name: 'Transportation & Logistics', lead: 'Dishon' },
+            { name: 'Sanctuary Keepers', lead: 'Dr. Claire O.' },
+            { name: 'Welfare', lead: 'Dupe F.' }
+          ]
+        },
+        events: {
+          name: 'Events & Outreaches',
+          blurb: 'Conferences, picnics, and the work that takes the gospel beyond our walls.',
+          depts: [
+            { name: 'Special Events Planning', lead: 'Dami B.' },
+            { name: 'Community Outreach & Evangelism', lead: 'Dupe F.' },
+            { name: 'Community Development & Engagement', lead: 'Chioma A.' }
+          ]
+        },
+        worship: {
+          name: 'Music & Worship',
+          blurb: 'The sound of Sunday: choir, band, and worship arts.',
+          depts: [
+            { name: 'Choir', lead: 'Dr. Nina B.' },
+            { name: 'Instrumentalists', lead: null }
+          ]
+        },
+        community: {
+          name: 'Community Life & Connections',
+          blurb: 'Men, women, youth, teens, kids — the spaces where the family grows.',
+          depts: [
+            { name: "Men's Ministry", lead: 'Tunde O.' },
+            { name: "Women's Ministry", lead: 'Pst. Yemisi A.' },
+            { name: 'Youth & Young Adult Ministry', lead: 'Boris T.' },
+            { name: 'Youth Training & Mentorship', lead: 'Dami & Kathleen B.' },
+            { name: 'Teen Ministry', lead: 'Toun O.' },
+            { name: 'Children Ministry', lead: 'Chioma A.' },
+            { name: 'New Members Engagement & Integration', lead: null }
+          ]
+        },
+        growth: {
+          name: 'Ministry & Spiritual Growth',
+          blurb: 'Discipleship, training, and the long obedience of growing in faith.',
+          depts: [
+            { name: 'Ministers Welfare', lead: 'Paul A.' },
+            { name: 'Workers Training', lead: 'Paul A.' },
+            { name: 'Discipleship & Bible Study', lead: 'Paul A.' },
+            { name: 'Baptism Coordination', lead: null },
+            { name: 'Prayer Ministry & Sunday School', lead: 'Tobi A.' }
+          ]
+        },
+        media: {
+          name: 'Media & Communications',
+          blurb: 'Livestream, photography, social — extending Sunday into the week.',
+          depts: [
+            { name: 'Media Technical', lead: 'Dr. Obi A.' },
+            { name: 'Photography & Videography', lead: null },
+            { name: 'Media Outreach', lead: 'Ruth O.' }
+          ]
+        }
+      };
+
+      var detailName = document.getElementById('ministryName');
+      var detailBlurb = document.getElementById('ministryBlurb');
+      var detailDepts = document.getElementById('ministryDepts');
+      var detailContact = document.getElementById('ministryContact');
+      var lastFocused = null;
+
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      function openMinistry(key) {
+        var m = ministries[key];
+        if (!m) return;
+        lastFocused = document.activeElement;
+        detailName.textContent = m.name;
+        detailBlurb.textContent = m.blurb;
+        detailDepts.innerHTML = m.depts.map(function (d) {
+          var leadHtml = d.lead
+            ? '<span class="dept-lead">' + escapeHtml(d.lead) + '</span>'
+            : '';
+          return '<li><span class="dept-name">' + escapeHtml(d.name) + '</span>' + leadHtml + '</li>';
+        }).join('');
+        if (detailContact) {
+          detailContact.href = 'mailto:rccgjhsv2013@gmail.com'
+            + '?subject=' + encodeURIComponent('Ministry inquiry: ' + m.name);
+        }
+        ministryOverlay.hidden = false;
+        ministryOverlay.classList.add('open');
+        // force reflow before adding visible so the transition runs
+        void ministryOverlay.offsetHeight;
+        ministryOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+        var closeBtn = ministryOverlay.querySelector('.ministry-close');
+        if (closeBtn) closeBtn.focus();
+      }
+
+      function closeMinistry() {
+        ministryOverlay.classList.remove('visible');
+        document.body.style.overflow = '';
+        setTimeout(function () {
+          ministryOverlay.classList.remove('open');
+          ministryOverlay.hidden = true;
+          if (lastFocused && typeof lastFocused.focus === 'function') {
+            lastFocused.focus();
+          }
+        }, 350);
+      }
+
+      document.querySelectorAll('[data-ministry]').forEach(function (card) {
+        card.addEventListener('click', function () {
+          openMinistry(card.dataset.ministry);
+        });
+      });
+      document.querySelectorAll('[data-close-ministry]').forEach(function (btn) {
+        btn.addEventListener('click', closeMinistry);
+      });
+      ministryOverlay.addEventListener('click', function (e) {
+        if (e.target === ministryOverlay) closeMinistry();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && ministryOverlay.classList.contains('open')) {
+          closeMinistry();
+        }
+      });
+    }
+
     // ---- Add-to-calendar popovers (Live page schedule cards) ----
     var calToggles = document.querySelectorAll('[data-cal-toggle]');
     if (calToggles.length) {
