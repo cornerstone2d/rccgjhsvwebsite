@@ -1104,6 +1104,10 @@ body[data-page="home"] section.alt#welcome {
   overflow: hidden;
   flex-shrink: 0;
 }
+/* When the church-cards live in a 2-column grid (Events page weekly
+   rhythms) each card is ~50% wider than in the 3-column home grid.
+   Bump the photo strip to keep the same visual proportion. */
+.grid.c2 .church-card .card-image { height: 300px; }
 .church-card .card-image.coral {
   background: linear-gradient(135deg, var(--coral-300), var(--coral-600));
 }
@@ -1121,7 +1125,8 @@ body[data-page="home"] section.alt#welcome {
   pointer-events: none;
 }
 @media (max-width: 600px) {
-  .church-card .card-image { height: 168px; }
+  .church-card .card-image,
+  .grid.c2 .church-card .card-image { height: 168px; }
 }
 .church-card .card-body {
   padding: 24px 28px 28px;
