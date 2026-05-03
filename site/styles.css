@@ -292,6 +292,14 @@ body[data-page="home"] { padding-top: 0; }
 .btn .arrow { display: inline-block; transition: transform 0.25s var(--ease-out); }
 .btn:hover .arrow { transform: translateX(4px); }
 
+/* Compact pill, used for inline card actions like "Add to calendar". */
+.btn.btn-sm {
+  padding: 9px 18px;
+  font-size: 13px;
+  min-height: 36px;
+  gap: 6px;
+}
+
 .btn-primary {
   background: var(--plum-600); color: var(--text-inverse); border-color: var(--plum-600);
 }
@@ -818,6 +826,28 @@ body[data-page="home"] section.alt#welcome {
 .card .card-cta:hover { color: var(--plum-700); }
 .card .card-cta::after { content: '→'; transition: transform 0.25s var(--ease-out); }
 .card .card-cta:hover::after { transform: translateX(4px); }
+
+/* Schedule card layout (Live page) — content on top, Add-to-calendar
+   pill anchored to the bottom so the row of cards stays aligned even
+   when titles wrap to different line counts. */
+.card.schedule-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 32px;
+}
+.card.schedule-card h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.card.schedule-card p {
+  font-size: 16px;
+  color: var(--plum-600);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.card.schedule-card .btn-sm { align-self: flex-start; }
 
 /* Card grids */
 .grid { display: grid; gap: 24px; }
@@ -1660,7 +1690,11 @@ footer.site-footer .nl-form button {
 .live-stage-head h1.display {
   color: var(--parchment);
   margin-bottom: 14px;
-  font-size: clamp(40px, 6vw, 64px);
+  font-size: clamp(36px, 5.5vw, 56px);
+  white-space: nowrap;
+}
+@media (max-width: 380px) {
+  .live-stage-head h1.display { white-space: normal; }
 }
 .live-stage-head .lede {
   color: rgba(250,246,240,0.8);
