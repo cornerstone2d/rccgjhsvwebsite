@@ -294,10 +294,11 @@ body[data-page="home"] { padding-top: 0; }
 
 /* Compact pill, used for inline card actions like "Add to calendar". */
 .btn.btn-sm {
-  padding: 9px 18px;
-  font-size: 13px;
-  min-height: 36px;
-  gap: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  min-height: 30px;
+  gap: 5px;
+  border-width: 1px;
 }
 
 .btn-primary {
@@ -834,7 +835,7 @@ body[data-page="home"] section.alt#welcome {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 22px;
+  gap: 36px;
   padding: 32px;
 }
 .card.schedule-card h3 {
@@ -847,7 +848,10 @@ body[data-page="home"] section.alt#welcome {
   font-weight: 600;
   letter-spacing: -0.005em;
 }
-.card.schedule-card .btn-sm { align-self: flex-start; }
+.card.schedule-card .btn-sm {
+  align-self: flex-start;
+  margin-top: 4px;
+}
 
 /* Card grids */
 .grid { display: grid; gap: 24px; }
