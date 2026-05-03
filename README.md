@@ -135,7 +135,7 @@ Seven built pages — Home, I'm New, About, Events, Give, Live, Contact — plus
 - **Service times:** Sundays 10:30 AM · Wednesdays 7:00 PM
 - **Address:** 474 Piercy Road, San Jose, CA 95138
 - **Phone:** (925) 759-8930
-- **Email:** rccgjhsv2013@gmail.com (migrating to info@rccgjhsv.org)
+- **Email:** info@rccgjhsv.org
 - **Website:** [rccgjhsv.org](https://www.rccgjhsv.org)
 
 ---

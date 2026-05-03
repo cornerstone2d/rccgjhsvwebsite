@@ -168,7 +168,7 @@ RCCG JHSV Media Storage.
 
 ### Contact
 - **Phone:** (925) 759-8930
-- **Email:** [rccgjhsv2013@gmail.com](mailto:rccgjhsv2013@gmail.com)
+- **Email:** [info@rccgjhsv.org](mailto:info@rccgjhsv.org)
 - **Location:** 474 Piercy Rd, San Jose, CA 95138
 
 ### Testimonials
