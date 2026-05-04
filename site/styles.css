@@ -2697,16 +2697,22 @@ section.has-bg-image::before {
   position: absolute; inset: 0;
   z-index: -1;
   pointer-events: none;
+  /* Lighter parchment veil + colored corner glows so the underlying
+     photo reads as the foreground texture, not just a shadow behind a
+     near-opaque scrim. Tuned to feel similar to the home hero where
+     the image is clearly visible through the plum gradient overlay. */
   background:
-    radial-gradient(60% 80% at 0% 0%, rgba(180, 138, 169, 0.65), transparent 60%),
-    radial-gradient(50% 70% at 100% 100%, rgba(232, 93, 60, 0.50), transparent 60%),
-    rgba(243, 238, 229, 0.78);
+    radial-gradient(60% 80% at 0% 0%, rgba(180, 138, 169, 0.42), transparent 60%),
+    radial-gradient(50% 70% at 100% 100%, rgba(232, 93, 60, 0.32), transparent 60%),
+    rgba(243, 238, 229, 0.42);
 }
 section.has-bg-image.solid-overlay::before {
+  /* Still much heavier than the default — photo is a faint texture
+     here, not a focal element (used on the Give "Other ways" section). */
   background:
-    radial-gradient(60% 80% at 0% 0%, rgba(180, 138, 169, 0.18), transparent 60%),
-    radial-gradient(50% 70% at 100% 100%, rgba(232, 93, 60, 0.10), transparent 60%),
-    rgba(250, 246, 240, 0.94);
+    radial-gradient(60% 80% at 0% 0%, rgba(180, 138, 169, 0.22), transparent 60%),
+    radial-gradient(50% 70% at 100% 100%, rgba(232, 93, 60, 0.16), transparent 60%),
+    rgba(250, 246, 240, 0.78);
 }
 
 /* Bare arch portrait — no plum mat, no border, no pinstripe ring.
