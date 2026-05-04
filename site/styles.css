@@ -172,11 +172,29 @@ body { padding-top: var(--topbar-height, 72px); }
 body[data-page="home"] { padding-top: 0; }
 .topbar .brand {
   font-family: var(--sans);
-  font-weight: 700;
-  font-size: 17px;
-  letter-spacing: -0.01em;
   color: var(--text-primary);
   display: flex; align-items: center; gap: 10px;
+  line-height: 1;
+  text-decoration: none;
+}
+.topbar .brand .brand-text {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.topbar .brand .brand-line {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+.topbar .brand .brand-sub {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--plum-600);
+  line-height: 1;
 }
 .topbar .brand .mark {
   width: 28px; height: 34px;
@@ -253,13 +271,14 @@ body[data-page="home"] { padding-top: 0; }
     -webkit-backdrop-filter: none;
     border-bottom-color: transparent;
   }
-  body[data-page="home"] .topbar.over-hero .brand {
+  body[data-page="home"] .topbar.over-hero .brand,
+  body[data-page="home"] .topbar.over-hero .brand .brand-line {
     color: rgba(250, 246, 240, 0.95);
   }
-  /* The wordmark accent (the inline-styled JHSV span) — flip to coral
-     so the brand reads correctly on dark photo backdrop. */
-  body[data-page="home"] .topbar.over-hero .brand span {
-    color: var(--coral-300) !important;
+  /* "Silicon Valley" subline flips to coral over the dark photo so the
+     wordmark stays branded instead of all-white. */
+  body[data-page="home"] .topbar.over-hero .brand .brand-sub {
+    color: var(--coral-300);
   }
   body[data-page="home"] .topbar.over-hero nav a:not(.btn-watch) {
     color: rgba(250, 246, 240, 0.85);
@@ -2376,28 +2395,6 @@ footer.site-footer .nl-form button {
   .ministry-detail,
   .ministry-card,
   .ministry-icon { transition: none; }
-}
-
-/* ============================================================
-   Brand wordmark in the topbar.
-   "Jesus House" stays full weight; "Silicon Valley" picks up the
-   plum accent so it reads as one cohesive lockup. On very small
-   screens we drop "Silicon Valley" to keep the topbar uncluttered;
-   the brand still announces "Jesus House Silicon Valley" via aria-label.
-   ============================================================ */
-.topbar .brand-name {
-  font-family: var(--sans);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-.topbar .brand-locale {
-  color: var(--plum-600);
-  font-weight: 500;
-  margin-left: 4px;
-}
-@media (max-width: 420px) {
-  .topbar .brand-locale { display: none; }
 }
 
 /* ============================================================
