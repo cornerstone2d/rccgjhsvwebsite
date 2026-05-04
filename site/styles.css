@@ -1586,11 +1586,15 @@ footer.site-footer .legal {
   margin-top: 40px;
   padding-top: 18px;
   display: flex; flex-wrap: wrap; gap: 16px;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-between;
+  align-items: center;
   font-size: 12.5px;
   color: rgba(250,246,240,0.55);
 }
+/* Each child stays on its own line — copyright on the left can wrap
+   if the viewport is tight, but the "Powered by InterServer" line
+   should never split between "by" and "InterServer". */
+footer.site-footer .legal > div + div { white-space: nowrap; }
 footer.site-footer .socials {
   display: flex; gap: 10px; margin-top: 4px;
 }
