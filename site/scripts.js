@@ -167,7 +167,7 @@
       pickActive();
     }
 
-    // ---- Newsletter / form stub ----
+    // ---- Connection List + contact form stubs ----
     document.querySelectorAll('form[data-stub]').forEach(function (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();

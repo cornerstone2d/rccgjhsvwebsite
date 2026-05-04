@@ -18,7 +18,7 @@
   window.JHSV_CALENDAR = {
     id:     "rccgjhsv2013@gmail.com",                  // public calendar id
     apiKey: "AIzaSyAbqbFGmW3VbrykD4TjV-qVtMEbhso0o0U", // referrer-restricted: rccgjhsv.org, *.vercel.app, localhost
-    maxResults: 4
+    maxResults: 6
   };
 </script>
 </head>
@@ -93,10 +93,10 @@
     <div class="section-head reveal">
       <div class="eyebrow">Upcoming</div>
       <h2 class="display">On the calendar.</h2>
-      <p class="lede">Highlighted events for the months ahead. Subscribe to the newsletter and you&rsquo;ll never miss one.</p>
+      <p class="lede">Highlighted events for the months ahead. Join our Connection List and you&rsquo;ll never miss one.</p>
     </div>
 
-    <div class="grid c2 reveal" id="upcomingGrid">
+    <div class="grid c3 reveal" id="upcomingGrid">
       <article class="upcoming-event"
         data-event
         data-event-title="Family Picnic"
@@ -168,12 +168,48 @@
           <p>Marking another year of God&rsquo;s faithfulness to Jesus House Silicon Valley.</p>
         </div>
       </article>
+
+      <article class="upcoming-event"
+        data-event
+        data-event-title="He-Motion &middot; She-Motion Conference"
+        data-event-start="2027-02-27T09:00:00-08:00"
+        data-event-end="2027-02-27T17:00:00-08:00"
+        data-event-location="474 Piercy Road, San Jose, CA 95138"
+        data-event-desc="An early-spring conference for the men and women of Jesus House. Worship, teaching, and connection.">
+        <div class="event-date" aria-hidden="true">
+          <div class="month">Feb</div>
+          <div class="day">27</div>
+        </div>
+        <div class="event-body">
+          <div class="event-meta">Saturday &middot; 9:00 AM to 5:00 PM</div>
+          <h3>He-Motion &middot; She-Motion Conference</h3>
+          <p>An early-spring conference for the men and women of Jesus House. Worship, teaching, and connection.</p>
+        </div>
+      </article>
+
+      <article class="upcoming-event"
+        data-event
+        data-event-title="Community Outreach Day"
+        data-event-start="2026-10-10T09:00:00-07:00"
+        data-event-end="2026-10-10T13:00:00-07:00"
+        data-event-location="474 Piercy Road, San Jose, CA 95138"
+        data-event-desc="Serving the wider Bay Area in tangible ways: food, prayer, presence.">
+        <div class="event-date" aria-hidden="true">
+          <div class="month">Oct</div>
+          <div class="day">10</div>
+        </div>
+        <div class="event-body">
+          <div class="event-meta">Saturday &middot; 9:00 AM to 1:00 PM</div>
+          <h3>Community Outreach Day</h3>
+          <p>Serving the wider Bay Area in tangible ways: food, prayer, presence.</p>
+        </div>
+      </article>
     </div>
 
     <p class="reveal" data-cal-status hidden style="text-align: center; margin-top: 28px; font-size: 13px; color: var(--text-muted);"></p>
 
     <div class="btn-row reveal" style="justify-content: center; margin-top: 32px;">
-      <a class="btn btn-primary" href="#newsletter" data-magnetic>Subscribe to updates <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-primary" href="#connection-list" data-magnetic>Sign up for updates <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -223,20 +259,20 @@
       </div>
     </div>
     <div class="btn-row reveal" style="justify-content: center; margin-top: 32px;">
-      <a class="btn btn-outline" href="#newsletter">Express your interest <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-outline" href="#connection-list">Express your interest <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
 
-<section class="cta-band" id="newsletter">
-  <div class="wrap" style="text-align: center; max-width: 620px;">
+<section class="cta-band" id="connection-list">
+  <div class="wrap" style="text-align: center; max-width: 640px;">
     <div class="reveal">
-      <div class="eyebrow">Never miss what's happening</div>
-      <h2 class="display">Once a month, that's it.</h2>
-      <p class="lede" style="margin: 0 auto 24px;">Email digest of upcoming events, special services, and ministry updates.</p>
+      <div class="eyebrow">Stay Connected</div>
+      <h2 class="display">Join our Connection List.</h2>
+      <p class="lede" style="margin: 0 auto 24px;">Sign up to receive church updates, announcements, service reminders, and important Ministry information from Jesus House Silicon Valley.</p>
       <form class="nl-form reveal" data-stub style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
         <input type="email" placeholder="your@email.com" required style="padding: 12px 18px; border-radius: 999px; border: 1px solid rgba(250,246,240,0.3); background: rgba(250,246,240,0.08); color: var(--text-inverse); min-width: 260px; font: inherit;" />
-        <button class="btn btn-accent" type="submit">Subscribe</button>
+        <button class="btn btn-accent" type="submit">Sign up</button>
       </form>
     </div>
   </div>
@@ -270,6 +306,6 @@
 
 <div data-include="partials/footer.html"></div>
 
-<script src="scripts.js?v=18"></script>
+<script src="scripts.js?v=19"></script>
 </body>
 </html>
