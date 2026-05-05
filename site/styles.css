@@ -179,7 +179,7 @@ body[data-page="home"] { padding-top: 0; }
 }
 .topbar .brand-logo {
   display: block;
-  height: 44px;
+  height: 64px;
   width: auto;
   transition: opacity 0.45s var(--ease-out);
 }
@@ -195,7 +195,7 @@ body[data-page="home"] { padding-top: 0; }
   pointer-events: none;
 }
 @media (max-width: 600px) {
-  .topbar .brand-logo { height: 38px; }
+  .topbar .brand-logo { height: 52px; }
 }
 .topbar nav {
   display: flex; align-items: center; gap: 24px;
@@ -1521,22 +1521,6 @@ footer.site-footer a:hover { color: var(--text-inverse); }
 footer.site-footer .col p { font-size: 14.5px; line-height: 1.7; }
 footer.site-footer .grid { gap: 40px; }
 
-/* White wordmark sitting above the columns — a single anchor point
-   so the footer reads as a real masthead, not just a list of links. */
-footer.site-footer .footer-brand {
-  margin-bottom: 40px;
-}
-footer.site-footer .footer-brand img {
-  display: block;
-  height: 56px;
-  width: auto;
-  max-width: 100%;
-}
-@media (max-width: 600px) {
-  footer.site-footer .footer-brand img { height: 48px; }
-  footer.site-footer .footer-brand { margin-bottom: 28px; }
-}
-
 /* 4-column footer: Visit | Services | Explore | Follow */
 footer.site-footer .footer-grid {
   display: grid;
@@ -2767,6 +2751,15 @@ section.has-bg-image.solid-overlay::before {
 }
 .with-side.image-left { grid-template-columns: 1fr 1fr; }
 .with-side > .with-side-image { max-width: 420px; width: 100%; justify-self: center; }
+
+/* Events Upcoming variant — give the event-card column the lion's
+   share so the .upcoming-event date-stamp + body fits cleanly at
+   half-row width, image takes a narrower portrait column. */
+.with-side.upcoming-twocol {
+  grid-template-columns: 3fr 2fr;
+  align-items: start;
+}
+.with-side.upcoming-twocol > .with-side-image { max-width: 360px; }
 @media (max-width: 900px) {
   .with-side { grid-template-columns: 1fr; gap: 40px; }
   .with-side > .with-side-image { display: none; }
