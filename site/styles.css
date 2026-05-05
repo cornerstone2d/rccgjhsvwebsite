@@ -2895,3 +2895,35 @@ footer.site-footer .col-services-hours small {
 @media (max-width: 600px) {
   footer.site-footer .col-explore { display: none; }
 }
+
+/* ============================================================
+   Pastor bio modal trigger — <button> styled to match the
+   .ministry-link CTA used inside .ministry-card on the About
+   page, replacing the older outlined .btn-bio pill.
+   ============================================================ */
+.pastor-bio-trigger {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--coral-600);
+  letter-spacing: 0.01em;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.25s var(--ease-out);
+}
+.pastor-bio-trigger:hover { color: var(--coral-700); }
+.pastor-bio-trigger:hover .arrow { transform: translateX(4px); }
+.pastor-bio-trigger:focus-visible {
+  outline: 2px solid var(--plum-600);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.pastor-bio-trigger .arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-out);
+}
