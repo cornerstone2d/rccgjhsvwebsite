@@ -171,44 +171,31 @@ section.dark .lede { color: rgba(250,246,240,0.78); }
 body { padding-top: var(--topbar-height, 72px); }
 body[data-page="home"] { padding-top: 0; }
 .topbar .brand {
-  font-family: var(--sans);
-  color: var(--text-primary);
-  display: flex; align-items: center; gap: 10px;
-  line-height: 1;
-  text-decoration: none;
-}
-.topbar .brand .brand-text {
   display: inline-flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.topbar .brand .brand-line {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.05;
-}
-.topbar .brand .brand-sub {
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--plum-600);
-  line-height: 1;
-}
-.topbar .brand .mark {
-  width: 28px; height: 34px;
-  background: var(--plum-600);
-  border-radius: var(--arch-full);
-  display: inline-block;
+  align-items: center;
+  text-decoration: none;
   position: relative;
+  line-height: 0;
 }
-.topbar .brand .mark::after {
-  content: ''; position: absolute;
-  inset: 7px 6px 0;
-  background: var(--coral-500);
-  border-radius: var(--arch-full);
-  opacity: 0.9;
+.topbar .brand-logo {
+  display: block;
+  height: 44px;
+  width: auto;
+  transition: opacity 0.45s var(--ease-out);
+}
+/* Two logo variants stacked. Default = dark (plum) wordmark visible.
+   White wordmark hidden by default; fades in only when the topbar is
+   overlaid on the home hero photo (see .over-hero rule below). */
+.topbar .brand-logo-light {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .topbar .brand-logo { height: 38px; }
 }
 .topbar nav {
   display: flex; align-items: center; gap: 24px;
@@ -271,14 +258,14 @@ body[data-page="home"] { padding-top: 0; }
     -webkit-backdrop-filter: none;
     border-bottom-color: transparent;
   }
-  body[data-page="home"] .topbar.over-hero .brand,
-  body[data-page="home"] .topbar.over-hero .brand .brand-line {
-    color: rgba(250, 246, 240, 0.95);
+  /* Over the home hero photo, fade out the dark (plum) wordmark and
+     fade in the white version on top. Both .brand-logo variants
+     transition opacity together so the swap reads as a soft cross-fade. */
+  body[data-page="home"] .topbar.over-hero .brand-logo-dark {
+    opacity: 0;
   }
-  /* "Silicon Valley" subline flips to coral over the dark photo so the
-     wordmark stays branded instead of all-white. */
-  body[data-page="home"] .topbar.over-hero .brand .brand-sub {
-    color: var(--coral-300);
+  body[data-page="home"] .topbar.over-hero .brand-logo-light {
+    opacity: 1;
   }
   body[data-page="home"] .topbar.over-hero nav a:not(.btn-watch) {
     color: rgba(250, 246, 240, 0.85);
@@ -1533,6 +1520,22 @@ footer.site-footer a {
 footer.site-footer a:hover { color: var(--text-inverse); }
 footer.site-footer .col p { font-size: 14.5px; line-height: 1.7; }
 footer.site-footer .grid { gap: 40px; }
+
+/* White wordmark sitting above the columns — a single anchor point
+   so the footer reads as a real masthead, not just a list of links. */
+footer.site-footer .footer-brand {
+  margin-bottom: 40px;
+}
+footer.site-footer .footer-brand img {
+  display: block;
+  height: 56px;
+  width: auto;
+  max-width: 100%;
+}
+@media (max-width: 600px) {
+  footer.site-footer .footer-brand img { height: 48px; }
+  footer.site-footer .footer-brand { margin-bottom: 28px; }
+}
 
 /* 4-column footer: Visit | Services | Explore | Follow */
 footer.site-footer .footer-grid {
