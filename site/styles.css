@@ -668,11 +668,31 @@ body[data-page="home"] section.alt#welcome {
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
 }
 .hero-v2 .hero-content .btn-row { margin-bottom: clamp(8px, 1.5vh, 14px); }
+@media (max-height: 900px) {
+  /* Standard laptop heights (1280x800, 1366x768, MacBook Air, etc.) —
+     the previous cap of 76px still landed the 2-line headline against
+     the topbar after wrapping. Pull the headline down hard so the
+     full block stays inside the breathing arch silhouette. */
+  .hero-v2 .hero-content h1.display {
+    font-size: clamp(34px, 6.8vh, 58px);
+    margin: 12px auto 14px;
+  }
+  .hero-v2 .hero-content { padding-bottom: clamp(64px, 13vh, 120px); }
+  .hero-v2 .hero-content .lede {
+    font-size: clamp(14px, 1.6vh, 16px);
+    margin-bottom: clamp(14px, 2.2vh, 22px);
+  }
+}
 @media (max-height: 720px) {
-  /* Surface Duo / short laptops — tighten everything further so the
-     scroll cue + bottom padding stay visible. */
-  .hero-v2 .hero-content { padding-bottom: 56px; }
-  .hero-v2 .hero-content h1.display { margin: 10px auto 12px; }
+  /* Surface Duo / very short laptops — squeeze further. */
+  .hero-v2 .hero-content {
+    padding-top: clamp(80px, calc(var(--topbar-height, 72px) + 12px), 110px);
+    padding-bottom: 48px;
+  }
+  .hero-v2 .hero-content h1.display {
+    font-size: clamp(30px, 6vh, 48px);
+    margin: 8px auto 10px;
+  }
   .hero-v2 .hero-content .meta-link {
     font-size: 12px;
     letter-spacing: 0.1em;
